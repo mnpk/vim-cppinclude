@@ -19,6 +19,8 @@
 " LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 " THE SOFTWARE.
+"
+// comment
 
 if exists('g:loaded_include')
   finish
@@ -29,7 +31,16 @@ let s:cpo_save = &cpo
 set cpo&vim
 
 function! cppinclude#include()
-  call search('#include', 'bsW')
+  let ln = search('#include', 'bsW')
+  if ln == 0
+    let ln = search('#define', 'bsW')
+    if ln == 0
+      let ln = search('//', 'bsW')
+      if ln == 0
+        execute "normal! gg"
+      endif
+    endif
+  endif
   execute "normal! o#include "
   execute "startinsert!"
 endfunction
