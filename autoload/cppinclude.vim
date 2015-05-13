@@ -20,7 +20,6 @@
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 " THE SOFTWARE.
 "
-// comment
 
 if exists('g:loaded_include')
   finish
@@ -38,6 +37,9 @@ function! cppinclude#include()
       let ln = search('//', 'bsW')
       if ln == 0
         execute "normal! gg"
+        execute "normal! O#include "
+        execute "startinsert!"
+        return
       endif
     endif
   endif

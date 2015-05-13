@@ -23,6 +23,7 @@
 command! -nargs=0 CppInclude call cppinclude#include()
 
 if !hasmapto('CppInclude')
+  
   noremap <c-i> :CppInclude<cr>
-  inoremap <c-i> <esc>:CppInclude<cr>
+  
 endif
