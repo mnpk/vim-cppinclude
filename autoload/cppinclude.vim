@@ -43,6 +43,7 @@ function! cppinclude#include()
           execute "startinsert!"
           return
         endif
+      endif
     endif
   endif
   execute "normal! o#include "
