@@ -34,13 +34,15 @@ function! cppinclude#include()
   if ln == 0
     let ln = search('#define', 'bsW')
     if ln == 0
-      let ln = search('//', 'bsW')
+      let ln = search('#pragma', 'bsW')
       if ln == 0
-        execute "normal! gg"
-        execute "normal! O#include "
-        execute "startinsert!"
-        return
-      endif
+        let ln = search('//', 'bsW')
+        if ln == 0
+          execute "normal! gg"
+          execute "normal! O#include "
+          execute "startinsert!"
+          return
+        endif
     endif
   endif
   execute "normal! o#include "
